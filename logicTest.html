@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <div>
+    <h1>Question 1</h1>
+    Array Number: <input type="text" placeholder="e.g: 1,2,3,4,5" id="soal1">
+    <button onclick="soal1()">process</button>
+  
+    <p id="res1">Result:</p>
+  </div>
+  <hr />
+  <div>
+    <h1>Question 2</h1>
+    Fibonacci Number: <input type="text" placeholder="e.g: 1" id="soal2">
+    <button onclick="soal2()">process</button>
+  
+    <p id="res2">Result:</p>
+  </div>
+  <hr />
+  <div>
+    <h1>Question 3</h1>
+    Array String: <input type="text" placeholder="e.g: kasur,rusak" id="soal3">
+    <button onclick="soal3()">process</button>
+  
+    <p id="res3">Result:</p>
+  </div>
+  <hr />
+  <div>
+    <h1>Question 4</h1>
+    Array Number: <input type="text" placeholder="e.g: 1,2,3,4,5" id="soal4">
+    <button onclick="soal4()">process</button>
+  
+    <p id="res4">Result:</p>
+  </div>
+
+  <script>
+    function soal1() {
+      let arr = document.getElementById("soal1").value;
+      if (arr.includes(', ')) {
+        arr = arr.split(', ')
+      } else {
+        arr = arr.split(',')
+      }
+      const result = arr.map(item => {
+        if (item % 2 === 0) return item * 2
+        return item * 3
+      })
+      document.getElementById("res1").innerHTML = 'Result: ' + JSON.stringify(result)
+    }
+    function soal2() {
+      let val = document.getElementById("soal2").value;
+      const perfectSquare = (num) => {
+        const square = parseInt(Math.sqrt(num))
+        return (square * square == num)
+      }
+      const result = perfectSquare(5 * val * val + 4) || perfectSquare(5 * val * val - 4)
+      document.getElementById("res2").innerHTML = 'Result: ' + result
+    }
+    function soal3() {
+      let arr = document.getElementById("soal3").value;
+      if (arr.includes('"')) arr = arr.split('"').join('')
+      if (arr.includes(', ')) {
+        arr = arr.split(', ')
+      } else {
+        arr = arr.split(',')
+      }
+      const result = {}
+
+      for (const word of arr) {
+        let key = word.split("").sort().join("")
+        if (result[key]) {
+          result[key].push(word)
+        } else {
+          result[key] = [word]
+        }
+      }
+      document.getElementById("res3").innerHTML = 'Result: ' + JSON.stringify(Object.values(result))
+    }
+    function soal4() {
+      let arr = document.getElementById("soal4").value;
+      if (arr.includes(', ')) {
+        arr = arr.split(', ')
+      } else {
+        arr = arr.split(',')
+      }
+      const result = arr.map(val => {
+        const isModulus3 = (val % 3) === 0
+        const isModulus7 = (val % 7) === 0
+        if (isModulus3 && isModulus7) return 'Link Aja'
+        if (isModulus3) return 'Link'
+        if (isModulus7) return 'Aja'
+        return val
+      })
+      document.getElementById("res4").innerHTML = 'Result: ' + JSON.stringify(result)
+    }
+  </script>
+
+</body>
+
+</html>
