@@ -28,14 +28,12 @@ const isFibo = (value = 0) => {
 const soal3 = (arr = []) => {
   let result = {}
 
-  for (let word of arr) {
+  arr.map((word) => {
     let key = word.split("").sort().join("")
-    if (result[key]) {
-      result[key].push(word)
-     } else {
-      result[key] = [word]
-     }
-  }
+    if (result[key]) return result[key].push(word)
+    return result[key] = [word]
+  })
+
   return Object.values(result)
 }
 ```
